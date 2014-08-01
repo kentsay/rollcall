@@ -15,7 +15,8 @@ class CreateRollcallTable extends Migration {
 		Schema::create('rollcall', function(Blueprint $table)
 		{
       $table->increments('id');
-      $table->string('uid');
+      $table->string('uid', 100);
+      $table->string('username', 32);
       $table->enum('trainingtype', array('brothers_t','sisters_t','life_t','2014_summer_vt'));
       $table->dateTime('record_date')->index();
       $table->enum('record', array('ontime','late','absent','leave'))->index();
