@@ -8,14 +8,12 @@ class RollCallController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-	{
-    $carduid = Request::get('carduid');
-    $username = User::where('carduid', '=', $carduid)->get();
-    $user = new stdClass();
-    $user = json_decode($username[0]);
-    return "rollcall ws: " . $user->username;
+  {
+    $record = RollCall::all();
+    return Response::json(array(
+      'record' => $record->toArray()),
+    200);
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
@@ -24,7 +22,24 @@ class RollCallController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+    error_log("create call");
+	  $carduid = Request::get('carduid');
+    $username = User::where('carduid', '=', $carduid)->get();
+    $user = new stdClass();
+    $user = json_decode($username[0]);
+    error_log("create call: " . $user->username);
+
+    $rollcall = new RollCall; 
+    $rollcall->uid      = $carduid;
+    $rollcall->trainingtype = Request::get('trainingtype');
+    $rollcall->record_date  = Request::get('record_date');
+    $rollcall->record       = Request::get('record');
+    $rollcall->username     = $user->username;
+    $rollcall->save();
+    return Response::json(array(
+      'error' => false,
+      'message' => $rollcall->toArray()),
+    200);
 	}
 
 
@@ -36,16 +51,22 @@ class RollCallController extends \BaseController {
 	public function store()
 	{
     $carduid = Request::get('carduid');
-    $type    = Request::get('trainingtype');
-    $date    = Request::get('record_date');
-    $record  = Request::get('record');
     $username = User::where('carduid', '=', $carduid)->get();
     $user = new stdClass();
     $user = json_decode($username[0]);
 
-    return "rollcall ws: " . $user->username;
-	}
-
+    $rollcall = new RollCall; 
+    $rollcall->uid      = $carduid;
+    $rollcall->trainingtype = Request::get('trainingtype');
+    $rollcall->record_date  = Request::get('record_date');
+    $rollcall->record       = Request::get('record');
+    $rollcall->username     = $user->username;
+    $rollcall->save();
+    return Response::json(array(
+      'error' => false,
+      'message' => $rollcall->toArray()),
+    200);
+  }
 
 	/**
 	 * Display the specified resource.
