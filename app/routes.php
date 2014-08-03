@@ -11,12 +11,17 @@
 |
 */
 
-/*
 Route::get('/', function()
 {
 	return View::make('hello');
 });
- */
+
+Route::group(array('prefix' => 'admintool'), function()
+{
+  Route::resource('users',    'AdminUsersController');
+  Route::resource('rollcall', 'AdminRollCallController');
+  Route::resource('report',   'AdminReportController');
+});
 
 Route::group(array('prefix' => 'ws/v1'), function()
 {
