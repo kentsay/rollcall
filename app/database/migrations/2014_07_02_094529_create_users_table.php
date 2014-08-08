@@ -25,6 +25,9 @@ class CreateUsersTable extends Migration {
         $table->string('sgroup', 3);
         $table->string('email', 32)->nullable();
         $table->string('mobile', 16)->nullable();
+        $table->string('brother_t', 1)->nullable();
+        $table->string('sister_t', 1)->nullable();
+        $table->string('life_t', 1)->nullable();
         // created_at, updated_at DATETIME
         $table->timestamps();
       });
