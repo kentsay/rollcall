@@ -2,9 +2,7 @@
 <html class="safari">
 <head>
 
-<title>
-Training Rollcall System
-</title>
+<title>訓練點名</title>
 
 <!-- Meta Tags -->
 <meta charset="utf-8">
@@ -14,9 +12,19 @@ Training Rollcall System
 
 <!-- CSS -->
 <link href="https://knt.wufoo.com/stylesheets/public/forms/css/index.0101.css" rel="stylesheet">
+<link href="http://128.199.158.31/css/menu.css" rel="stylesheet">
 </head>
 
 <body id="public" class="noI" onorientationchange="window.scrollTo(0, 1)">
+<div id='cssmenu'>
+<ul>
+    <li class="active"><a href='http://128.199.158.31/rcclient.php'><span>訓練點名</span></a></li>
+    <li><a href='http://128.199.158.31/admintool/report'><span>報表查詢</span></a></li>
+    <li><a href='http://128.199.158.31/admintool/users'><span>帳號管理</span></a></li>
+    <li class='last'><a href='http://128.199.158.31/admintool/rollcall'><span>記錄管理</span></a></li>
+</ul>
+</div>
+
 <div id="container" class="ltr">
 <form id="form1" name="form1" class="wufoo topLabel page1" accept-charset="UTF-8" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
       action="http://128.199.158.31/rccheckin.php">

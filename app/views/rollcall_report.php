@@ -3,6 +3,7 @@
   <title>訓練報表</title>
   <!-- CSS -->
   <link rel="stylesheet" href="http://128.199.158.31/css/rollcall_table.css"> 
+  <link href="http://128.199.158.31/css/menu.css" rel="stylesheet">
   <!-- Meta Tags -->
   <meta charset="utf-8">
   <meta name="robots" content="index">
@@ -92,8 +93,16 @@ function convertTrainingType($type) {
 }
 
 ?>
-
 <body>
+
+<div id='cssmenu'>
+<ul>
+    <li><a href='http://128.199.158.31/rcclient.php'><span>訓練點名</span></a></li>
+    <li class='active'><a href='http://128.199.158.31/admintool/report'><span>報表查詢</span></a></li>
+    <li><a href='http://128.199.158.31/admintool/users'><span>帳號管理</span></a></li>
+    <li class='last'><a href='http://128.199.158.31/admintool/rollcall'><span>記錄管理</span></a></li>
+</ul>
+</div>
 
 <h2><?php echo $resArr->date."  ".convertTrainingType($resArr->type); ?> 訓練報表</h2>
 <table class="bordered">
