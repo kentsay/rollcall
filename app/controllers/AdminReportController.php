@@ -9,7 +9,11 @@ class AdminReportController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+    $param = Request::all();
+    if (count($param) == 0)
+      return View::make('rollcall_query');
+    else
+      return View::make('rollcall_report');
 	}
 
 

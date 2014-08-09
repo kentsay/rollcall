@@ -10,6 +10,7 @@ class AdminUsersController extends \BaseController {
 	public function index()
 	{
 		//
+    echo "admintool user page";
 	}
 
 

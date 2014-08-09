@@ -10,6 +10,7 @@ class AdminRollCallController extends \BaseController {
 	public function index()
 	{
 		//
+    echo "admintool rollcall page";
 	}
 
 
