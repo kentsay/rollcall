@@ -47,8 +47,8 @@ class UsersController extends \BaseController {
     $user->sgroup   = Request::get('sgroup');
     $user->email    = Request::get('email');
     $user->mobile   = Request::get('mobile');
-    $user->brother_t= Request::get('brother_t');
-    $user->sister_t = Request::get('sister_t');
+    $user->brothers_t= Request::get('brothers_t');
+    $user->sisters_t = Request::get('sisters_t');
     $user->life_t   = Request::get('life_t');
     $user->save();
     return Response::json(array(
@@ -75,8 +75,8 @@ class UsersController extends \BaseController {
     $user->sgroup   = Request::get('sgroup');
     $user->email    = Request::get('email');
     $user->mobile   = Request::get('mobile');
-    $user->brother_t= Request::get('brother_t');
-    $user->sister_t = Request::get('sister_t');
+    $user->brothers_t= Request::get('brothers_t');
+    $user->sisters_t = Request::get('sisters_t');
     $user->life_t   = Request::get('life_t');
     $user->save();
     return Response::json(array(

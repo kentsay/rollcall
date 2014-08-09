@@ -25,7 +25,7 @@ class RollCallController extends \BaseController {
                             left join 
                                    (select * from rollcall where record_date="'.$param['date'].'") as a 
                             on a.uid=users.carduid 
-                            where '.$type.' = "1"');
+                            where '.$type.' = "1" order by users.hall, users.bgroup, users.sgroup' );
     } else if (count($param) == 2 && array_key_exists("date", $param) && array_key_exists("hall", $param)) {
       //query by date & hall
       $record = DB::select('select users.username, 
@@ -41,7 +41,7 @@ class RollCallController extends \BaseController {
                                    (select * from rollcall where record_date="'.$param['date'].'") as a 
                             on a.uid=users.carduid 
                             where '.$type.' = "1" and
-                            users.hall = "'. $param['hall'].'"');
+                            users.hall = "'. $param['hall'].'" order by users.hall, users.bgroup, users.sgroup');
     } else if (count($param) == 3 && array_key_exists("date", $param) && array_key_exists("hall", $param) && array_key_exists("bgroup", $param)) {
       //query by date & hall & bgroup
       $record = DB::select('select users.username, 
@@ -58,7 +58,7 @@ class RollCallController extends \BaseController {
                             on a.uid=users.carduid 
                             where '.$type.' = "1" and
                             users.hall = "'. $param['hall'].'" and
-                            users.bgroup = "'.$param['bgroup'].'"');
+                            users.bgroup = "'.$param['bgroup'].'" order by users.hall, users.bgroup, users.sgroup');
     } else {
       //query all
       $record = DB::select('select rollcall.username, record from users,rollcall where rollcall.uid = users.carduid');
