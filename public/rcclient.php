@@ -30,7 +30,7 @@
       action="http://128.199.158.31/rccheckin.php">
   
 <header id="header" class="info">
-  <h2>Meeting Form</h2>
+  <h2>台北市召會第12,36,37會所訓練點名系統</h2>
   <div>To help keep meetings on track, use this form to record users rollcall records.</div>
 </header>
 
