@@ -11,10 +11,6 @@
 <meta name="generator" content="Wufoo">
 <meta name="robots" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<meta name="description" content="Wufoo is a web form builder that helps anyone create beautiful forms, surveys and invitations without writing a single line of code.">
-<link rel="canonical" href="https://knt.wufoo.com/forms/m7zs6ux0msohe7/">
-
 <!-- CSS -->
 <link href="https://knt.wufoo.com/stylesheets/public/forms/css/index.0101.css" rel="stylesheet">
 

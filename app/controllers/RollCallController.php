@@ -64,7 +64,8 @@ class RollCallController extends \BaseController {
       $record = DB::select('select rollcall.username, record from users,rollcall where rollcall.uid = users.carduid');
     }
     return Response::json(array(
-      //'record' => $record->toArray()),
+      'date' => $param['date'],
+      'type' => $type,
       'record' => $record),
     200);
   }
