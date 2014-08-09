@@ -38,7 +38,10 @@ if (!empty($_POST)) {
     else if ($result->message->record == "ontime")
       echo "<font size='7'><p style='color:green;'>".$result->message->username.":".messageCovert($result->message->record)."</p></font>";
   }
-  else echo "<font size='7'>資料庫中沒有資料</font>";
+  else {
+    echo "<font size='7'>資料庫中沒有資料</font><br>";
+    echo $result->message;
+  }
   curl_close($ch); 
   echo "<script>
           setTimeout(function(){history.back();}, 1000);
