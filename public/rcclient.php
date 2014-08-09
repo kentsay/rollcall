@@ -46,10 +46,12 @@ Training Rollcall System
       <input id="trainingtype" name="trainingtype" type="radio" class="field checkbox" value="life_t" tabindex="9" onchange="handleInput(this);"/>
       <label class="choice" for="trainingtype">生命成全訓練</label>
     </span>
+    <!--
     <span>
       <input id="trainingtype" name="trainingtype" type="radio" class="field checkbox" value="2014_summer_vt" tabindex="10" onchange="handleInput(this);"/>
       <label class="choice" for="trainingtype">2014夏季錄影訓練</label>
     </span>
+    -->
   </div>
   </fieldset>
 </li>
