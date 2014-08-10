@@ -34,7 +34,7 @@
       action="http://128.199.158.31/admintool/report">
   
 <header id="header" class="info">
-  <h2>12,36,37 訓練報表查詢</h2>
+  <h2>台北市召會第12,36,37會所訓練報表查詢</h2>
   <div></div>
 </header>
 

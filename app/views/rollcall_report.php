@@ -14,6 +14,7 @@
 $ontime=0;
 $late=0;
 $absent=0;
+$leave=0;
 
 $param = Request::all();
 $url = "http://128.199.158.31/ws/v1/rollcall";
@@ -59,19 +60,23 @@ function get_web_page($url) {
   return $header ['content'];
 } 
 
-function convertStatus($record,&$ontime,&$late,&$absent) {
+function convertStatus($record,&$ontime,&$late,&$absent,&$leave) {
   switch($record) {
     case "ontime":
       $ontime = $ontime+1;
-      return "準時";
+      return "<font color='green'>準時</font>";
       break;
     case "late":
       $late = $late+1;
-      return "遲到";
+      return "<font color='blue'>遲到</font>";
+      break;
+    case "leave":
+      $leave = $leave+1;
+      return "請假";
       break;
     default:
       $absent = $absent+1;
-      return "缺席";
+      return "<font color='red'>缺席</font>";
       break;
   }
 }
@@ -114,6 +119,7 @@ function convertTrainingType($type) {
         <th>B/S </th>        
         <th>姓名</th>        
         <th>狀態</th>
+        <th>簽到時間</th>
     </tr>
     </thead>
     <?php
@@ -124,27 +130,39 @@ function convertTrainingType($type) {
       echo "<td>$record->sgroup</td>";
       echo "<td>$record->gender</td>";
       echo "<td>$record->username</td>";
-      echo "<td>".convertStatus($record->record, $ontime, $late, $absent)."</td>";
-      echo "</td>";
+      echo "<td>".convertStatus($record->record, $ontime, $late, $absent,$leave)."</td>";
+      if ($record->created_at == "") {
+        //have no record, will not show time
+        echo "<td></td>";
+      }
+      else {
+        //find record, show rollcall time
+        $rollcall_time = date('Y-m-d H:i:s', strtotime($record->created_at. '+ 8 hours'));
+        echo "<td>$rollcall_time</td>";
+      }
+      echo "</tr>";
     }
     ?>
     <tr>
-      <td colspan=3>應到</td>
+      <td colspan=4>應到</td>
       <td colspan=3><?php echo count($resArr->record); ?></td>
     </tr> 
     <tr>
-      <td colspan=3>準時</td>
+      <td colspan=4>準時</td>
       <td colspan=3><?php echo $ontime; ?></td>
     </tr> 
     <tr>
-      <td colspan=3>遲到</td>
+      <td colspan=4>遲到</td>
       <td colspan=3><?php echo $late; ?></td>
     </tr> 
     <tr>
-      <td colspan=3>缺席</td>
+      <td colspan=4>請假</td>
+      <td colspan=3><?php echo $leave; ?></td>
+    </tr> 
+    <tr>
+      <td colspan=4>缺席</td>
       <td colspan=3><?php echo $absent; ?></td>
     </tr> 
 </table>
 </body>
-
 </html>
