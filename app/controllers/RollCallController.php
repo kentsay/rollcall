@@ -20,7 +20,8 @@ class RollCallController extends \BaseController {
                                    users.gender,
                                    a.record_date,
                                    a.trainingtype,
-                                   a.record 
+                                   a.record,
+                                   a.created_at 
                             from users 
                             left join 
                                    (select * from rollcall where record_date="'.$param['date'].'") as a 
@@ -35,7 +36,8 @@ class RollCallController extends \BaseController {
                                    users.gender,
                                    a.record_date,
                                    a.trainingtype,
-                                   a.record 
+                                   a.record, 
+                                   a.created_at 
                             from users 
                             left join 
                                    (select * from rollcall where record_date="'.$param['date'].'") as a 
@@ -51,7 +53,8 @@ class RollCallController extends \BaseController {
                                    users.gender,
                                    a.record_date,
                                    a.trainingtype,
-                                   a.record 
+                                   a.record,
+                                   a.created_at  
                             from users 
                             left join 
                                    (select * from rollcall where record_date="'.$param['date'].'") as a 
