@@ -13,11 +13,43 @@ class HomeController extends BaseController {
 	|
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
-	*/
-
+	|
 	public function showWelcome()
 	{
 		return View::make('hello');
 	}
+	*/
 
+  public function getIndex()
+  {
+    return View::make('home.index');
+  }
+
+  public function postIndex()
+  {
+    $username = Input::get('username');
+    $password = Input::get('password');
+    error_log($username."####".$password);
+
+    if (Auth::attempt(['username' => $username, 'password' => $password]))
+    {
+      echo "login";
+      //return Redirect::intended('/user');
+    }
+
+    return Redirect::back()
+      ->withInput()
+      ->withErrors('That username/password combo does not exist.');
+  }
+
+  public function getLogin()
+  {
+    return Redirect::to('/');
+  }
+
+  public function getLogout()
+  {
+    Auth::logout();
+    return Redirect::to('/');
+  }
 }

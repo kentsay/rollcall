@@ -132,7 +132,8 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+	  User::destroy($id);
+    //return Redirect::to('admintool/users');  
 	}
 
 
