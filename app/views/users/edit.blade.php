@@ -14,16 +14,21 @@
 {{ Form::text('username', null, ['placeholder' => $user->username, 'class' => 'form-control']) }}
 </div>
 <div class='form-group'>
-{{ Form::label('hall', '會所') }}
-{{ Form::text('hall', null, ['placeholder' => $user->hall, 'class' => 'form-control']) }}
+{{ Form::label('gender', 'B/S') }}<br>
+{{ Form::label('gender', '弟兄') }}
+{{ Form::radio('gender', 'B',['placeholder' => $user->gender, 'class' => 'form-control']) }}&nbsp
+{{ Form::label('gender', '姊妹') }}
+{{ Form::radio('gender', 'S', ['placeholder' => $user->gender, 'class' => 'form-control']) }} 
 </div>
 <div class='form-group'>
-{{ Form::label('bgroup', '大區') }}
-{{ Form::text('bgroup', null, ['placeholder' => $user->bgroup, 'class' => 'form-control']) }}
-</div>
-<div class='form-group'>
-{{ Form::label('sgroup', '小區') }}
-{{ Form::text('sgroup', null, ['placeholder' => $user->sgroup, 'class' => 'form-control']) }}
+{{ Form::label('hall', '會所') }}&nbsp
+{{ Form::select('hall', ['12'=>'12','36'=>'36', '37'=>'37'] , ['placeholder' => $user->hall, 'class' => 'field']) }}&nbsp
+{{ Form::label('bgroup', '大區') }}&nbsp
+{{ Form::select('bgroup', ['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','S'=>'學生'], 
+                          ['placeholder' => $user->bgroup, 'class' => 'field']) }}&nbsp
+{{ Form::label('sgroup', '小區') }}&nbsp
+{{ Form::select('sgroup', ['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9'], 
+                          ['placeholder' => $user->sgroup, 'class' => 'field']) }} 
 </div>
 <div class='form-group'>
 {{ Form::label('trainingtype', '參加訓練:') }}&nbsp&nbsp
@@ -52,7 +57,7 @@
 </div>
 <div class='form-group'>
 {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}&nbsp
-{{ Form::reset('Reset', ['class' => 'btn btn-danger']) }} 
+<a href='http://128.199.158.31/admintool/users'>{{ Form::button('Cancel', ['class' => 'btn btn-danger']) }} </a>
 </div>
 {{ Form::close() }}
 </div>

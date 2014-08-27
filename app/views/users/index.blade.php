@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>聖徒姓名</th>
+                    <th>B/S</th>
                     <th>會所</th>
                     <th>大區</th>
                     <th>小區</th>
@@ -28,6 +29,7 @@
                 @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->username }}</td>
+                    <td>{{ $user->gender }}</td>
                     <td>{{ $user->hall}}</td>
                     <td>{{ $user->bgroup}}</td>
                     <td>{{ $user->sgroup}}</td>

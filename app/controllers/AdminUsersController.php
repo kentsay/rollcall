@@ -32,6 +32,7 @@ class AdminUsersController extends \BaseController {
 	{
 	  $user = new User;
     $user->username= Input::get('username');
+    $user->gender= Input::get('gender');
     $user->hall= Input::get('hall');
     $user->bgroup= Input::get('bgroup');
     $user->sgroup= Input::get('sgroup');
@@ -65,6 +66,7 @@ class AdminUsersController extends \BaseController {
 	{
     $user = User::find($id); 
     $user->username= Input::get('username');
+    $user->gender= Input::get('gender');
     $user->hall= Input::get('hall');
     $user->bgroup= Input::get('bgroup');
     $user->sgroup= Input::get('sgroup');
