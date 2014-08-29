@@ -11,14 +11,37 @@ class UsersController extends \BaseController {
 	{
     $carduid = Request::get('carduid');
     $username= Request::get('username');
+    $hall= Request::get('hall');
+    $bgroup= Request::get('bgroup');
+    $sgroup= Request::get('sgroup');
     if (null != $carduid) {
       $users = User::where('carduid', $carduid)->get();
       return Response::json(array(
+        'total' => count($users),
         'users' => $users),
       200);
     } else if (null != $username) {
       $users = User::where('username', $username)->get();
       return Response::json(array(
+        'total' => count($users),
+        'users' => $users),
+      200);
+    } else if (null != $hall && empty($bgroup) && empty($sgroup))  {
+      $users = User::where('hall', $hall)->get();
+      return Response::json(array(
+        'total' => count($users),
+        'users' => $users),
+      200);
+    } else if (null != $hall && null != $bgroup && empty($sgroup))  {
+      $users = User::where('hall', $hall)->where('bgroup', $bgroup)->get();
+      return Response::json(array(
+        'total' => count($users),
+        'users' => $users),
+      200);
+    } else if (null != $hall && null != $bgroup && null !=$sgroup)  {
+      $users = User::where('hall', $hall)->where('bgroup', $bgroup)->where('sgroup', $sgroup)->get();
+      return Response::json(array(
+        'total' => count($users),
         'users' => $users),
       200);
     } else {

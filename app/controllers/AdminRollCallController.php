@@ -9,9 +9,9 @@ class AdminRollCallController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-    echo "admintool rollcall page";
-	}
+    $rollcall= RollCall::all();
+    return View::make('rollcall.index', ['rollcall' => $rollcall]);
+  }
 
 
 	/**
@@ -21,7 +21,7 @@ class AdminRollCallController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+	  return View::make('rollcall.create');	
 	}
 
 
