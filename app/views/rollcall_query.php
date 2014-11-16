@@ -5,7 +5,9 @@
 <title>
 訓練報表
 </title>
-
+<?php 
+date_default_timezone_set('Asia/Taipei');
+?>
 <!-- Meta Tags -->
 <meta charset="utf-8">
 <meta name="generator" content="Wufoo">
@@ -63,7 +65,7 @@
   </span>
   <span id="cal2">
     <img id="pick2" class="datepicker" src="https://knt.wufoo.com/images/icons/calendar.png" alt="Pick a date." data-date-format="yyyy-mm-dd"
-                                       data-date="<?php echo date("Y-m-d H:i:s", strtotime('+12 hours')); ?>" />
+                                       data-date="<?php echo date("Y-m-d H:i:s"); ?>" />
   </span>
 </li>
 

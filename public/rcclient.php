@@ -3,7 +3,9 @@
 <head>
 
 <title>訓練點名</title>
-
+<?php
+date_default_timezone_set('Asia/Taipei');
+?>
 <!-- Meta Tags -->
 <meta charset="utf-8">
 <meta name="generator" content="Wufoo">
@@ -54,12 +56,6 @@
       <input id="trainingtype" name="trainingtype" type="radio" class="field checkbox" value="life_t" tabindex="9" onchange="handleInput(this);"/>
       <label class="choice" for="trainingtype">生命成全訓練</label>
     </span>
-    <!--
-    <span>
-      <input id="trainingtype" name="trainingtype" type="radio" class="field checkbox" value="2014_summer_vt" tabindex="10" onchange="handleInput(this);"/>
-      <label class="choice" for="trainingtype">2014夏季錄影訓練</label>
-    </span>
-    -->
   </div>
   </fieldset>
 </li>
@@ -88,7 +84,7 @@
   </span>
   <span id="cal2">
     <img id="pick2" class="datepicker" src="https://knt.wufoo.com/images/icons/calendar.png" alt="Pick a date." data-date-format="yyyy-mm-dd" 
-                                       data-date="<?php echo date("Y-m-d H:i:s", strtotime('+12 hours')); ?>" />
+                                       data-date="<?php echo date("Y-m-d H:i:s"); ?>" />
   </span>
   <span>
     <input id="Field2-3" name="Field2-3" type="text" class="field text" value="" size="4" maxlength="4" tabindex="4" onkeyup="handleInput(this);"

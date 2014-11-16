@@ -3,11 +3,12 @@
 </head>
 
 <?php
+date_default_timezone_set('Asia/Taipei');
 
 if (!empty($_POST)) {
   $url = 'http://128.199.158.31/ws/v1/rollcall';
   $meeting_time= date($_POST['Field2']."-".$_POST['Field2-1']."-".$_POST['Field2-2']." ".$_POST['Field2-3'].":".$_POST['Field2-4'].":00"); 
-  $current = date("Y-m-d H:i:s", strtotime('+12 hours'));
+  $current = date("Y-m-d H:i:s");
   if (strtotime($current) <= strtotime($meeting_time)) $status="ontime";
   else $status="late";
 
@@ -16,6 +17,8 @@ if (!empty($_POST)) {
     'trainingtype' => urlencode($_POST['trainingtype']),
     'record_date' => urlencode($_POST['Field2']."-".$_POST['Field2-1']."-".$_POST['Field2-2']),
     'record' => urlencode($status),
+    'created_at' => $current,
+    'updated_at' => $current
   );
 
   $fields_string = "";

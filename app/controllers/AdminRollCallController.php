@@ -32,7 +32,16 @@ class AdminRollCallController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+    $rollcall = new RollCall;
+    $carduid= DB::select("select carduid from users where username='".Input::get('username')."'"); 
+    $rollcall->uid      =$carduid[0]->carduid;
+    $rollcall->username     = Input::get('username');
+    $rollcall->trainingtype = Input::get('training');
+    $rollcall->record_date  = Input::get('Field2')."-".Input::get('Field2-1')."-".Input::get('Field2-2');
+    $rollcall->created_at   = $rollcall->record_date." 19:00:00";
+    $rollcall->record       = Input::get('status');
+    $rollcall->save();
+    return Redirect::to('admintool/rollcall');
 	}
 
 

@@ -123,6 +123,8 @@ function convertTrainingType($type) {
     </tr>
     </thead>
     <?php
+    date_default_timezone_set('Asia/Taipei');    
+
     foreach($resArr->record as $record) {
       echo "<tr>";
       echo "<td>$record->hall</td>";
@@ -137,7 +139,10 @@ function convertTrainingType($type) {
       }
       else {
         //find record, show rollcall time
-        $rollcall_time = date('Y-m-d H:i:s', strtotime($record->created_at. '+ 8 hours'));
+        if ($record->record_date < "2014-11-10" && substr($record->created_at,11) != "19:00:00")
+	  $rollcall_time = date('Y-m-d H:i:s', strtotime($record->created_at. '+ 8 hours'));
+	else
+          $rollcall_time = date('Y-m-d H:i:s', strtotime($record->created_at));
         echo "<td>$rollcall_time</td>";
       }
       echo "</tr>";
