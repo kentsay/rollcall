@@ -78,9 +78,7 @@
     </li>
 
     <li class="notranslate">
-      <div class="form-group">
-        <label for="username">姓名</label>&nbsp;&nbsp;<input placeholder="姓名" class="form-control" name="username" type="text" id="username">
-      </div>
+      <label for="username">姓名</label>&nbsp;&nbsp;<input placeholder="姓名" class="form-control" name="username" type="text" id="username">
     </li>
 
     <li id="fo2li2" class="notranslate">
