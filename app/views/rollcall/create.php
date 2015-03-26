@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html class="safari">
 <head>
-
   <title>
     Add Record | User Admin
   </title>
@@ -16,9 +15,17 @@
   <!-- CSS -->
   <link href="https://knt.wufoo.com/stylesheets/public/forms/css/index.0101.css" rel="stylesheet">
   <link href="http://128.199.158.31/css/menu.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <!-- js -->
-  <script src="https://knt.wufoo.com/scripts/public/dynamic.0101.js?language=english"></script>
-
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+    $(function() {
+    $( "#datepicker" ).datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+   });
+  </script>
 </head>
 
 <body id="public" class="noI" onorientationchange="window.scrollTo(0, 1)">
@@ -42,32 +49,9 @@
   </header>
 
   <ul>
-
     <li id="fo1li2" class="date notranslate">
-      <label class="desc" id="title2" for="Field2">
-        日期
-      </label>
-      <span>
-        <input id="Field2-1" name="Field2-1" type="text" class="field text" value="" size="2" maxlength="2" tabindex="2" onkeyup="handleInput(this);"
-        onchange="handleInput(this);"/>
-        <label for="Field2-1">MM</label>
-      </span>
-      <span class="symbol">/</span>
-      <span>
-        <input id="Field2-2" name="Field2-2" type="text" class="field text" value="" size="2" maxlength="2" tabindex="3" onkeyup="handleInput(this);"
-        onchange="handleInput(this);"/>
-        <label for="Field2-2">DD</label>
-      </span>
-      <span class="symbol">/</span>
-      <span>
-        <input id="Field2" name="Field2" type="text" class="field text" value="" size="4" maxlength="4" tabindex="4" onkeyup="handleInput(this);"
-        onchange="handleInput(this);"/>
-        <label for="Field2">YYYY</label>
-      </span>
-      <span id="cal2">
-        <img id="pick2" class="datepicker" src="https://knt.wufoo.com/images/icons/calendar.png" alt="Pick a date." data-date-format="yyyy-mm-dd"
-        data-date="<?php echo date("Y-m-d H:i:s"); ?>" />
-      </span>
+      <label class="desc" id="title2" for="Field2">日期</label>
+      <input type="text" id="datepicker" name="datepicker">
     </li>
 
     <li id="fo2li3" class="notranslate">
@@ -93,6 +77,7 @@
         <input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="新增" onmousedown="doSubmitEvents();" />
       </div>
     </li>
+
   </ul>
 </form> 
 </div>
