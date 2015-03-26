@@ -22,7 +22,7 @@
 </div>
 <div class='form-group'>
 {{ Form::label('hall', '會所') }}&nbsp
-{{ Form::select('hall', ['12'=>'12','36'=>'36', '37'=>'37'] , ['placeholder' => $user->hall, 'class' => 'field']) }}&nbsp
+{{ Form::select('hall', ['12'=>'12','36'=>'36', '37'=>'37','60'=>'60'] , ['placeholder' => $user->hall, 'class' => 'field']) }}&nbsp
 {{ Form::label('bgroup', '大區') }}&nbsp
 {{ Form::select('bgroup', ['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','S'=>'學生'], 
                           ['placeholder' => $user->bgroup, 'class' => 'field']) }}&nbsp
