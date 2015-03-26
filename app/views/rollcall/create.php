@@ -19,13 +19,7 @@
   <!-- js -->
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script>
-    $(function() {
-    $( "#datepicker" ).datepicker({
-      dateFormat: 'yy-mm-dd'
-    });
-   });
-  </script>
+  <script src="http://128.199.158.31/js/rollcall.js"></script>
 </head>
 
 <body id="public" class="noI" onorientationchange="window.scrollTo(0, 1)">
