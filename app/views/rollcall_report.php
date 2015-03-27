@@ -19,8 +19,8 @@ $leave=0;
 $param = Request::all();
 $url = "http://128.199.158.31/ws/v1/rollcall";
 
-if (!empty($param['Field2']) && !empty($param['Field2-1']) && !empty($param['Field2-2']))
-  $date = $param['Field2']."-".$param['Field2-1']."-".$param['Field2-2'];
+if (!empty($param['datepicker']))
+  $date = $param['datepicker'];
 
 if (isset($date))
   $url .= "?date=".$date;

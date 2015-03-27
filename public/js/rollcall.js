@@ -1,11 +1,3 @@
-// function for datepicker
-$(function() {
-  $( "#datepicker" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-
-
 function getList() {
   var name_list = [];
   var name_api = "http://128.199.158.31/ws/v1/users";
