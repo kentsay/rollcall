@@ -150,7 +150,7 @@ function convertTrainingType($type) {
     ?>
     <tr>
       <td colspan=4>應到</td>
-      <td colspan=3><?php echo count($resArr->record); ?></td>
+      <td colspan=3><?php echo $ontime+$late+$leave+$absent; ?></td>
     </tr> 
     <tr>
       <td colspan=4>準時</td>

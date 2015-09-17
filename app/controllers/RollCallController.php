@@ -10,73 +10,82 @@ class RollCallController extends \BaseController {
 	public function index()
   {
     $param = Request::all();
-    $type= $this->getTrainingType($param['date']);
-    if (count($param) == 1 && array_key_exists("date", $param)) {
-      //query by date 
-      $record = DB::select('select users.username, 
-                                   users.hall, 
-                                   users.bgroup, 
-                                   users.sgroup,
-                                   users.gender,
-                                   a.record_date,
-                                   a.trainingtype,
-                                   a.record,
-                                   a.created_at 
-                            from users 
-                            left join 
-                                   (select * from rollcall where record_date="'.$param['date'].'") as a 
-                            on a.uid=users.carduid 
-                            where '.$type.' = "1" order by users.hall, users.bgroup, users.sgroup, users.id' );
-    } else if (count($param) == 2 && array_key_exists("date", $param) && array_key_exists("hall", $param)) {
-      //query by date & hall
-      $record = DB::select('select users.username, 
-                                   users.hall, 
-                                   users.bgroup, 
-                                   users.sgroup,
-                                   users.gender,
-                                   a.record_date,
-                                   a.trainingtype,
-                                   a.record, 
-                                   a.created_at 
-                            from users 
-                            left join 
-                                   (select * from rollcall where record_date="'.$param['date'].'") as a 
-                            on a.uid=users.carduid 
-                            where '.$type.' = "1" and
-                            users.hall = "'. $param['hall'].'" order by users.hall, users.bgroup, users.sgroup, users.id');
-    } else if (count($param) == 3 && array_key_exists("date", $param) && array_key_exists("hall", $param) && array_key_exists("bgroup", $param)) {
-      //query by date & hall & bgroup
-      $record = DB::select('select users.username, 
-                                   users.hall, 
-                                   users.bgroup, 
-                                   users.sgroup,
-                                   users.gender,
-                                   a.record_date,
-                                   a.trainingtype,
-                                   a.record,
-                                   a.created_at  
-                            from users 
-                            left join 
-                                   (select * from rollcall where record_date="'.$param['date'].'") as a 
-                            on a.uid=users.carduid 
-                            where '.$type.' = "1" and
-                            users.hall = "'. $param['hall'].'" and
-                            users.bgroup = "'.$param['bgroup'].'" order by users.hall, users.bgroup, users.sgroup, users.id');
-    } else {
-      //query all
-      $record = DB::select('select rollcall.username, record from users,rollcall where rollcall.uid = users.carduid');
+    $train_type = $this->getTrainingType($param['date']);
+    $final_record = new stdClass();
+    //there could be 2 training at the same date (brothers_t + sisters_t)
+    foreach($train_type as $type)
+    {
+      if (count($param) == 1 && array_key_exists("date", $param)) {
+        //query by date 
+        $record = DB::select('select users.username, 
+          users.hall, 
+          users.bgroup, 
+          users.sgroup,
+          users.gender,
+          a.record_date,
+          a.trainingtype,
+          a.record,
+          a.created_at 
+          from users 
+          left join 
+          (select * from rollcall where record_date="'.$param['date'].'") as a 
+          on a.uid=users.carduid 
+          where '.$type->trainingtype.' = "1" order by users.hall, users.bgroup, users.sgroup, users.id' );
+      } else if (count($param) == 2 && array_key_exists("date", $param) && array_key_exists("hall", $param)) {
+        //query by date & hall
+        $record = DB::select('select users.username, 
+          users.hall, 
+          users.bgroup, 
+          users.sgroup,
+          users.gender,
+          a.record_date,
+          a.trainingtype,
+          a.record, 
+          a.created_at 
+          from users 
+          left join 
+          (select * from rollcall where record_date="'.$param['date'].'") as a 
+          on a.uid=users.carduid 
+          where '.$type->trainingtype.' = "1" and
+          users.hall = "'. $param['hall'].'" order by users.hall, users.bgroup, users.sgroup, users.id');
+      } else if (count($param) == 3 && array_key_exists("date", $param) && array_key_exists("hall", $param) && array_key_exists("bgroup", $param)) {
+        //query by date & hall & bgroup
+        $record = DB::select('select users.username, 
+          users.hall, 
+          users.bgroup, 
+          users.sgroup,
+          users.gender,
+          a.record_date,
+          a.trainingtype,
+          a.record,
+          a.created_at  
+          from users 
+          left join 
+          (select * from rollcall where record_date="'.$param['date'].'") as a 
+          on a.uid=users.carduid 
+          where '.$type->trainingtype.' = "1" and
+          users.hall = "'. $param['hall'].'" and
+          users.bgroup = "'.$param['bgroup'].'" order by users.hall, users.bgroup, users.sgroup, users.id');
+      } else {
+        //query all
+        $record = DB::select('select rollcall.username, record from users,rollcall where rollcall.uid = users.carduid');
+      }
+      $final_record  = (object) array_merge((array) $final_record, (array) $record);
     }
     return Response::json(array(
       'date' => $param['date'],
       'type' => $type,
-      'record' => $record),
+      'record' => $final_record),
     200);
   }
 
   public function getTrainingType($date) {
-    $record = DB::select ("select trainingtype from rollcall where record_date='".$date."' limit 1");
-    if (!empty(count($record)))
-      return $record[0]->trainingtype;
+    //select all the training according to the date because there could be 2 training at the same date
+    $record = DB::select ("select distinct trainingtype from rollcall where record_date='".$date."' ");
+    if (!empty(count($record))) {
+      //return $record[1]->trainingtype;
+      return $record;
+    }
   }
 
   public function checkInTrainingList($uid, $train_type) {
