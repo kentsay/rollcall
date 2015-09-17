@@ -1,0 +1,38 @@
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://128.199.158.31/jquery.chained.remote.min.js"></script>
+</head>
+<body>
+<select id="hall" name="hall">
+  <option value="">--</option>
+  <option value="12">12</option>
+  <option value="36">36</option>
+  <option value="37">37</option>
+</select>
+<select id="bgroup" name="bgroup">
+  <option value="">--</option>
+</select>
+<select id="sgroup" name="sgroup">
+  <option value="">--</option>
+</select>
+<select id="name" name="name">
+  <option value="">--</option>
+</select>
+<script>
+$("#bgroup").remoteChained({
+    parents : "#hall",
+    url : "http://128.199.158.31/ws/v1/users"
+});
+
+$("#sgroup").remoteChained({
+    parents : "#bgroup",
+    url : "http://128.199.158.31/ws/v1/users"
+});
+
+$("#name").remoteChained({
+    parents : "#sgroup",
+    url : "http://128.199.158.31/ws/v1/users"
+});
+</script>
+
+</body>
