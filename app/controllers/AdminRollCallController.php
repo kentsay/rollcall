@@ -65,7 +65,6 @@ class AdminRollCallController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
 	}
 
 
