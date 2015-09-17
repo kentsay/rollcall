@@ -47,6 +47,7 @@ class UsersController extends \BaseController {
     } else {
       $users = User::all();
       return Response::json(array(
+        'total' => count($users),
         'users' => $users->toArray()),
       200);
     }
