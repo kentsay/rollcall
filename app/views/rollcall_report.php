@@ -1,8 +1,12 @@
+<?php
+require_once '../library/HttpUtil.php';
+?>
+
 <html>
 <head>
   <title>訓練報表</title>
   <!-- CSS -->
-  <link rel="stylesheet" href="http://128.199.158.31/css/rollcall_table.css"> 
+  <link rel="stylesheet" href="http://128.199.158.31/css/rollcall_table.css">
   <link href="http://128.199.158.31/css/menu.css" rel="stylesheet">
   <!-- Meta Tags -->
   <meta charset="utf-8">
@@ -29,36 +33,9 @@ if (!empty($param['hall']))
 if (!empty($param['bgroup']))
   $url .= "&bgroup=".$param['bgroup'];
 
-$response = get_web_page($url);
+$response = HttpUtil.get_web_page($url);
 $resArr = array();
 $resArr = json_decode($response);
-
-function get_web_page($url) {
-  $options = array (CURLOPT_RETURNTRANSFER => true, // return web page
-    CURLOPT_HEADER => false, // don't return headers
-    CURLOPT_FOLLOWLOCATION => true, // follow redirects
-    CURLOPT_ENCODING => "", // handle compressed
-    CURLOPT_USERAGENT => "test", // who am i
-    CURLOPT_AUTOREFERER => true, // set referer on redirect
-    CURLOPT_CONNECTTIMEOUT => 120, // timeout on connect
-    CURLOPT_TIMEOUT => 120, // timeout on response
-    CURLOPT_MAXREDIRS => 10 ); // stop after 10 redirects
-
-  $ch = curl_init ( $url );
-  curl_setopt_array ( $ch, $options );
-  $content = curl_exec ( $ch );
-  $err = curl_errno ( $ch );
-  $errmsg = curl_error ( $ch );
-  $header = curl_getinfo ( $ch );
-  $httpCode = curl_getinfo ( $ch, CURLINFO_HTTP_CODE );
-
-  curl_close ( $ch );
-
-  $header ['errno'] = $err;
-  $header ['errmsg'] = $errmsg;
-  $header ['content'] = $content;
-  return $header ['content'];
-} 
 
 function convertStatus($record,&$ontime,&$late,&$absent,&$leave) {
   switch($record) {
@@ -91,7 +68,7 @@ function convertTrainingType($type) {
       break;
     case "life_t":
       return "生命成全訓練";
-      break; 
+      break;
     default:
       return "";
   }
@@ -113,17 +90,17 @@ function convertTrainingType($type) {
 <table class="bordered">
     <thead>
     <tr>
-        <th>會所</th>        
-        <th>大區</th>        
-        <th>小區</th>        
-        <th>B/S </th>        
-        <th>姓名</th>        
+        <th>會所</th>
+        <th>大區</th>
+        <th>小區</th>
+        <th>B/S </th>
+        <th>姓名</th>
         <th>狀態</th>
         <th>簽到時間</th>
     </tr>
     </thead>
     <?php
-    date_default_timezone_set('Asia/Taipei');    
+    date_default_timezone_set('Asia/Taipei');
 
     foreach($resArr->record as $record) {
       echo "<tr>";
@@ -151,23 +128,23 @@ function convertTrainingType($type) {
     <tr>
       <td colspan=4>應到</td>
       <td colspan=3><?php echo $ontime+$late+$leave+$absent; ?></td>
-    </tr> 
+    </tr>
     <tr>
       <td colspan=4>準時</td>
       <td colspan=3><?php echo $ontime; ?></td>
-    </tr> 
+    </tr>
     <tr>
       <td colspan=4>遲到</td>
       <td colspan=3><?php echo $late; ?></td>
-    </tr> 
+    </tr>
     <tr>
       <td colspan=4>請假</td>
       <td colspan=3><?php echo $leave; ?></td>
-    </tr> 
+    </tr>
     <tr>
       <td colspan=4>缺席</td>
       <td colspan=3><?php echo $absent; ?></td>
-    </tr> 
+    </tr>
 </table>
 </body>
 </html>
